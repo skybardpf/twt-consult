@@ -1,0 +1,100 @@
+2013/08/30 23:27:11 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/leadert/webserver/twt-consult-git/www/public/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /usr/share/php5/libs/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /usr/share/php5/libs/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/leadert/w...')
+#1 /usr/share/php5/libs/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /usr/share/php5/libs/yii/framework/web/CClientScript.php(510): CAssetManager->publish('/usr/share/php5...')
+#3 /usr/share/php5/libs/yii/framework/web/CClientScript.php(547): CClientScript->getCoreScriptUrl()
+#4 /usr/share/php5/libs/yii/framework/web/CClientScript.php(348): CClientScript->getPackageBaseUrl('jquery')
+#5 /usr/share/php5/libs/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /usr/share/php5/libs/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html ...')
+#7 /usr/share/php5/libs/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html ...')
+#8 /home/leadert/webserver/twt-consult-git/www/protected/controllers/SiteController.php(72): CController->render('contact', Array)
+#9 /usr/share/php5/libs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#10 /usr/share/php5/libs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /usr/share/php5/libs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /usr/share/php5/libs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#14 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/contact')
+#15 /usr/share/php5/libs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /home/leadert/webserver/twt-consult-git/www/public/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/index.php?r=site/contact
+HTTP_REFERER=http://twt-consult-git/
+---
+2013/08/30 23:51:25 [error] [exception.CException] exception 'CException' with message 'The asset "/home/leadert/webserver/twt-consult-git/www/protected/assets" to be published does not exist.' in /usr/share/php5/libs/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /home/leadert/webserver/twt-consult-git/www/protected/components/Controller.php(33): CAssetManager->publish('/home/leadert/w...', false, -1, true)
+#1 /usr/share/php5/libs/yii/framework/web/CController.php(306): Controller->beforeAction(Object(CInlineAction))
+#2 /usr/share/php5/libs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /usr/share/php5/libs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(282): CController->run('')
+#5 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#6 /usr/share/php5/libs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /home/leadert/webserver/twt-consult-git/www/public/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/
+---
+2013/08/30 23:51:25 [error] [exception.CException] exception 'CException' with message 'The asset "/home/leadert/webserver/twt-consult-git/www/protected/assets" to be published does not exist.' in /usr/share/php5/libs/yii/framework/web/CAssetManager.php:257
+Stack trace:
+#0 /home/leadert/webserver/twt-consult-git/www/protected/components/Controller.php(33): CAssetManager->publish('/home/leadert/w...', false, -1, true)
+#1 /usr/share/php5/libs/yii/framework/web/CController.php(306): Controller->beforeAction(Object(CInlineAction))
+#2 /usr/share/php5/libs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /usr/share/php5/libs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(282): CController->run('')
+#5 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#6 /usr/share/php5/libs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /home/leadert/webserver/twt-consult-git/www/public/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://twt-consult-git/
+---
+2013/08/30 23:52:08 [error] [php] Missing argument 1 for CClientScript::registerCoreScript(), called in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/main.php on line 2 and defined (/usr/share/php5/libs/yii/framework/web/CClientScript.php:571)
+Stack trace:
+#0 /usr/share/php5/libs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#1 /usr/share/php5/libs/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#2 /usr/share/php5/libs/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#3 /usr/share/php5/libs/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#4 /usr/share/php5/libs/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#5 /usr/share/php5/libs/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#6 /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/column1.php(6): SiteController->endContent()
+#7 /usr/share/php5/libs/yii/framework/web/CBaseController.php(126): require()
+#8 /usr/share/php5/libs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#9 /usr/share/php5/libs/yii/framework/web/CController.php(784): SiteController->renderFile()
+#10 /home/leadert/webserver/twt-consult-git/www/protected/controllers/SiteController.php(32): SiteController->render()
+#11 /usr/share/php5/libs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /usr/share/php5/libs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#13 /usr/share/php5/libs/yii/framework/web/CController.php(286): SiteController->runAction()
+#14 /usr/share/php5/libs/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#15 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#16 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#17 /usr/share/php5/libs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /home/leadert/webserver/twt-consult-git/www/public/index.php(13): CWebApplication->run()
+REQUEST_URI=/
+in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/main.php (2)
+in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/column1.php (6)
+in /home/leadert/webserver/twt-consult-git/www/protected/controllers/SiteController.php (32)
+2013/08/30 23:52:09 [error] [php] Missing argument 1 for CClientScript::registerCoreScript(), called in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/main.php on line 2 and defined (/usr/share/php5/libs/yii/framework/web/CClientScript.php:571)
+Stack trace:
+#0 /usr/share/php5/libs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#1 /usr/share/php5/libs/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#2 /usr/share/php5/libs/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#3 /usr/share/php5/libs/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#4 /usr/share/php5/libs/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#5 /usr/share/php5/libs/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#6 /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/column1.php(6): SiteController->endContent()
+#7 /usr/share/php5/libs/yii/framework/web/CBaseController.php(126): require()
+#8 /usr/share/php5/libs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#9 /usr/share/php5/libs/yii/framework/web/CController.php(784): SiteController->renderFile()
+#10 /home/leadert/webserver/twt-consult-git/www/protected/controllers/SiteController.php(32): SiteController->render()
+#11 /usr/share/php5/libs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /usr/share/php5/libs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#13 /usr/share/php5/libs/yii/framework/web/CController.php(286): SiteController->runAction()
+#14 /usr/share/php5/libs/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#15 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#16 /usr/share/php5/libs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#17 /usr/share/php5/libs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /home/leadert/webserver/twt-consult-git/www/public/index.php(13): CWebApplication->run()
+REQUEST_URI=/
+in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/main.php (2)
+in /home/leadert/webserver/twt-consult-git/www/protected/views/layouts/column1.php (6)
+in /home/leadert/webserver/twt-consult-git/www/protected/controllers/SiteController.php (32)
