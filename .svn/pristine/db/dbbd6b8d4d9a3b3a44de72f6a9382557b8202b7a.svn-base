@@ -1,0 +1,20 @@
+title: Meta-тэги  
+
+actions:
+  show: [Просмотреть мета-теги, Просмотр мета-тегов]
+  list: [Просмотреть мета-теги, Просмотр мета-тегов, [delete]]
+  add: [Добавить мета-теги, Добавление новости, Мета-теги успешно добавлены, Мета-теги добавить не удалось, '[root_url]meta_tags/list/']
+  modify: [Редактировать мета-теги, Редактирование мета-тегов, Мета-теги успешно отредактированы, Мета-теги отредактировать не удалось, '[root_url]meta_tags/list/']
+  delete: [Удалить мета-теги, Удаление мета-тегов, Мета-теги успешно удалены, Мета-теги удалить не удалось, '', Вы уверены что хотите удалить этот мета-тег?]
+
+list_actions:
+  inline:
+    show: {link: 'meta_tags/show/id/[id]', put: {title: before}, icon: show}
+    url: {title: modify, link: 'meta_tags/modify/id/[id]'}
+    hidden: {link: 'meta_tags/change/field/hidden/id/[id]/ret_action/list', title: {yes: Сделать видимой, no: Скрыть}, retLink: 'meta_tags/list'}
+    delete: {link: 'meta_tags/delete/id/[id]', icon: delete}
+  
+  after:
+    add: 'meta_tags/add'
+
+noContent: Мета-тегов не найдено

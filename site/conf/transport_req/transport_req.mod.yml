@@ -1,0 +1,187 @@
+tables:
+  transport_req:
+    fields:
+      id: {type: int, length: 10, unsigned: 1, auto_increment: 1, notnull: 1, am: {type: integer, title: Номер}}
+      req_num: {type: tinytext, am: {type: string, title: Номер заявки}}
+      req_status: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: Отправлено, htmltype: checkbox, default: 'no', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+      created: {type: date, notnull: 1, am: {type: date, req: 1, title: Дата заявки}}
+#      company_name: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название компании}}
+      url: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: URL}}
+      contact: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: ФИО}}
+#      phone: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Контактный телефон}}
+      mail: {type: tinytext, notnull: 1, am: {type: mail, req: 1, title: Контактный E-mail}}
+      user_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Пользователь}}
+#      comment: {type: text, am: {type: text, title: Комментарии и примечания}}
+#      type_trasport: {type: enum('avto','maritime','multimodal','railway'), notnull: 0, am: {type: select, title: Вид перевозки, null: Не выбрана, values: {avto: 'Автомобильная', maritime: 'Морская', multimodal: 'Мультимодальная', railway: 'Железнодорожный транспорт'}}}
+      #loading_country: {type: tinytext, notnull: 0, am: {type: string, title: Страна загрузки}}
+#      loading_country: {type: int, length: 10, notnull: 0, am: {type: select, title: Страна загрузки}}
+#      loading_city: {am: {type: string, title: Пункт (город) загрузки}}
+#      loading_index: {am: {type: string, title: Индекс}}
+#      customs_place: {type: tinytext, notnull: 0, am: {type: string, title: Место таможенного оформления}}
+      #delivery_country: {type: tinytext, notnull: 0, am: {type: string, title: Страна доставки}}
+#      delivery_country: {type: int, length: 10, notnull: 0, am: {type: select, title: Страна доставки}}
+#      delivery_city: {am: {type: string, title: Пункт (город) доставки}}
+#      delivery_index: {am: {type: string, title: Индекс}}
+      cargo_name: {type: text, am: {type: text, req: 1, title: Наименование товара}}
+#      weight: {type: tinytext, notnull: 0, am: {type: string, title: Вес брутто}}
+#      volume: {type: tinytext, notnull: 0, am: {type: string, title: Объем}}
+      cost: {type: float, notnull: 0, am: {type: float, req: 1, title: Стоимость груза, attrs: {maxlength: 9}}} 
+#      currency: {type: enum('rur','eur','usd'), notnull: 0, am: {type: select, title: Валюта, values: {rur: 'RUR', eur: 'EUR', usd: 'USD'}}}
+      currency: {type: int, length: 10, default: 0, notnull: 1, am: {type: string, title: Валюта, htmltype: select}}
+#      currency: {type: enum('rur','eur','usd'), notnull: 0, am: {type: select, title: Валюта, values: {rur: 'RUR', eur: 'EUR', usd: 'USD'}}}
+#      danger_class: {type: tinytext, notnull: 0, am: {type: string, title: 'Класс опасности (для опасных грузов)'}}
+#      type_ps: {type: tinytext, notnull: 0, am: {type: string, title: 'Требуемый тип п/с'}}
+#      temperature_mode: {type: tinytext, notnull: 0, am: {type: string, title: 'Температурный режим (для грузов, требующих особых условий хранения)'}}
+#      is_insurance: {type: enum('yes','no'), notnull: 0, am: {type: select, title: Необходимо страхование груза, values: {yes: Да, no: Нет}}}
+#      is_customs: {type: enum('yes','no'), notnull: 0, am: {type: select, title: Таможенное оформление, values: {yes: Да, no: Нет}}}
+#      transport_inform: {type: text, am: {type: text, title: 'Дополнительная информация о перевозке, пожелания'}}
+#      loading_inform: {type: text, am: {type: text, title: 'Дополнительная информация о погрузке, пожелания'}}
+      services: 
+        virtual: 1
+        ref_to:
+          virtual: 1
+          table: additional
+          fields: [id, title]
+          use_ref: transport_req2additional
+        am: {type: checkboxes, title: Интересующие услуги, del: ' ', field_name: title, title_field: title}
+    table:
+      PRIMARY KEY: id
+    foreign:
+      currency_name: {table: currencies, field: title, use_ref: transport2currencies, am: {type: string, title: Валюта, htmltype: select}}
+    actions:
+      list: [id, created, req_num, req_status, url, contact, mail, cargo_name, cost, currency, services]
+      show: all
+      modify: [req_num, req_status, url, contact, mail, cargo_name, cost, currency, services]
+      add: [req_num, req_status, url, contact,mail, cargo_name, cost, currency, services]
+      site_form: [contact, mail, cargo_name, cost, currency, services]
+      site_form_check: [req_num, req_status, url, contact, mail, cargo_name, cost, currency, services]
+      site_mail: [req_num, req_status, url, contact, mail, cargo_name, cost, currency, services]
+      cabinet: [id, created, cargo_name, cost, currency_name]
+      showorder: [id, created, url, contact, mail, cargo_name, cost, currency_name]
+
+  currencies:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      code: {type: varchar, length: '255', notnull: 1, am: {type: string, req: 1, title: Код, trimNE: 'Поле "Код" не должно быть пустым'}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+  additional:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, unsigned: 1, auto_increment: 1, notnull: 1, am: {type: integer}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Наименование}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+  loadings:
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      transport_req_id: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Заявка на транспортировку}}
+      loading_city: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Пункт (город) загрузки}}
+      loading_index: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Индекс}}
+    table:
+      PRIMARY KEY: id
+    actions:
+      cms_loading: [loading_city, loading_index]
+
+  deliveries:
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      transport_req_id: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Заявка на транспортировку}}
+      delivery_city: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Пункт (город) доставки}}
+      delivery_index: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Индекс}}
+    table:
+      PRIMARY KEY: id
+    actions:
+      cms_delivery: [delivery_city, delivery_index]
+
+  countries:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: string, title: Отображать на сайте, htmltype: checkbox, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+  transport_req2additional:
+    fields:
+      transport_id: {type: int, notnull: 1, unsigned: 1}
+      additional_id: {type: int, notnull: 1, unsigned: 1}
+    table:
+      UNIQUE:
+        transport_req_additional: [transport_id, additional_id]
+
+refs:
+  transport2currencies: {type: M-1, join: left outer, tables: {transport_req: currency, currencies: id}}
+  transport2loading_country: {type: M-1, join: left outer, tables: {transport_req: loading_country, countries: id}}
+  transport2delivery_country: {type: M-1, join: left outer, tables: {transport_req: delivery_country, countries: id}}
+  transport_req2additional:
+    virtual: 1
+    join: left outer
+    type: N-M
+    tables:
+      -
+        - {table: transport_req, field: id}
+        - {table: transport_req2additional, field: transport_id}
+      -
+        - {table: transport_req2additional, field: additional_id}
+        - {table: additional, field: id}
+
+
+mail:
+  message_transport:
+    from: 'no_reply@twt.ru'
+    subject: 'Новая заявка на транспортировку № [transp_id]'
+    type: text/html
+    message: |
+      <p>Здравствуйте</p>
+      <br>Вы подали заявку на сайте [site_name]
+      <br>Номер заявки: [transp_id]
+      <br>Дата заявки: [created]
+      <br>Название компании: [company_name]
+      <br>Контактное лицо: [contact]
+      <br>Контактный e-mail: [mail]
+      <br>Комментарии и примечания: [comment]
+      <br>Вид перевозки: [type_trasport]
+      <br>Страна загрузки: [loading_country]
+      #Связка:
+      #Пункт (город) загрузки
+      #Индекс
+      <br>Место таможенного оформления: [customs_place]
+      <br>Страна доставки: [delivery_country]
+      #Связка:
+      #Пункт (город) доставки
+      #Индекс
+      <br>Наименование груза: [cargo_name]
+      <br>Вес брутто: [weight]
+      <br>Объем: [volume]
+      <br>Стоимость груза: [cost]
+      <br>Валюта: [currency]
+      <br>Класс опасности (для опасных грузов): [danger_class]
+      <br>Требуемый тип п/с: [type_ps]
+      <br>Температурный режим (для грузов, требующих особых условий хранения): [temperature_mode]
+      <br>Необходимо страхование груза: [is_insurance]
+      <br>Таможенное оформление: [is_customs]
+      <br>Дополнительная информация о перевозке, пожелания: [transport_inform]
+      <br>Дополнительная информация о погрузке, пожелания: [loading_inform]
+  message_admin:
+    from: 'no_reply@twtconsult.com'
+    subject: 'Поступила заявка на перевозку № [transp_id]'
+    type: text/html
+    message: |
+      <p>[NO_REST]</p> 
+      <p>Поступила заявка на перевозку № [transp_id]</p> <br />
+      Номер заявки: [transp_id] <br />
+      Дата заявки: [created] <br />
+      Контактное лицо: [contact] <br />
+      Контактный e-mail: [mail] <br />
+      Наименование груза: [cargo_name]  
+      <div>Стоимость груза: [cost] [currency]</div> 
+      <div>Дополнительные услуги: [services]</div> 
+      <div>Строка 1С: [json]</div>
+  repl:
+    site_name: "TWT"
+  date_format: H:i:s d.m.Y

@@ -1,0 +1,21 @@
+title: Род деятельности
+ 
+actions: 
+  show: [Просмотреть род деятельности, Просмотр рода деятельности]
+  change: [Изменить отображение, Измение отображения]
+  list: [Просмотреть роды деятельности, Просмотр родов деятельности, [delete]]
+  add: [Добавить род деятельности, Добавление рода деятельности, Род деятельности успешно добавлен, Род деятельности добавить не удалось, '[root_url]kind_activities/list/']
+  modify: [Редактировать род деятельности, Редактирование рода деятельности, Род деятельности успешно отредактирован, Род деятельности отредактировать не удалось, '[root_url]kind_activities/list/']
+  delete: [Удалить род деятельности, Удаление рода деятельности, Род деятельности успешно удален, Род деятельности удалить не удалось, '[root_url]kind_activities/list/', 'Вы уверены, что хотите удалить этот род деятельности?']
+ 
+list_actions: 
+  inline: 
+    show: {link: 'kind_activities/show/id/[id]', put: {title: before}, icon: show} 
+    title: {title: modify, link: 'kind_activities/modify/id/[id]'} 
+    delete: {link: 'kind_activities/delete/id/[id]', icon: delete}
+    active: {title: change, link: 'kind_activities/change/id/[id]/field/active/ret_action/list'}
+ 
+  after: 
+    add: 'kind_activities/add' 
+ 
+noContent: Рода деятельности не найдено

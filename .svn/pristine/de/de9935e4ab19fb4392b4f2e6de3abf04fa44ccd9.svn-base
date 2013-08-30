@@ -1,0 +1,21 @@
+title: Обратный звонок
+ 
+actions: 
+  show: [Просмотреть обратный звонок, Просмотр обратного звонка]
+  change: [Изменить отображение, Измение отображения]
+  list: [Просмотреть обратные звонки, Просмотр обратных звонков, [delete]]
+#  add: [Добавить обратный звонок, Добавление обратного звонка, Обратный звонок успешно добавлен, Обратный звонок добавить не удалось, '[root_url]callback/list/']
+  modify: [Редактировать обратный звонок, Редактирование обратного звонка, Обратный звонок успешно отредактирован, Обратный звонок отредактировать не удалось, '[root_url]callback/list/']
+  delete: [Удалить обратный звонок, Удаление обратного звонка, Обратный звонок успешно удален, Обратный звонок удалить не удалось, '[root_url]callback/list/', 'Вы уверены, что хотите удалить этот обратный звонок?']
+ 
+list_actions: 
+  inline: 
+    show: {link: 'callback/show/id/[id]', put: {created: before}, icon: show}
+    created: {title: modify, link: 'callback/modify/id/[id]'}
+    delete: {link: 'callback/delete/id/[id]', icon: delete}
+    status: {title: change, link: 'callback/change/id/[id]/field/status/ret_action/list'}
+ 
+#  after:
+#    add: 'callback/add'
+ 
+noContent: Обратных звонков не найдено

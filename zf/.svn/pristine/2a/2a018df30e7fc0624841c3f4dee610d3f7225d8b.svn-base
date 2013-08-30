@@ -1,0 +1,13 @@
+db_prefix: mvs_ru
+form:
+  send: отправить
+  reset: сбросить
+  not_choosen: не выбрано
+
+lang:
+  top: наверх
+  terms: условия использования
+  policy: политика конфиденциальности
+
+app_title: mvs-capital.ru
+language: rus

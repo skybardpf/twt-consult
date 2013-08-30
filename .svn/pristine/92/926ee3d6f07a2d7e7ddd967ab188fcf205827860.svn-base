@@ -1,0 +1,65 @@
+tables:
+  users:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      login: {type: VARCHAR, length: 32, notnull: 1, am: {type: login, req: 1, title: Логин}}
+      pass: {type: varchar, length: 32, notnull: 1, am: {type: pass, req: 1, htmltype: pass, title: Пароль}}
+      blocked: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: Доступ к системе, otitle: Запретить, htmltype: checkbox, default: 'no', checked: 'yes', values: {no: доступ разрешен, yes: доступ запрещен}}}
+      email: {type: tinytext, notnull: 1, am: {type: string, htmltype: mail, req: 1, title: Электронная почта}}
+      phone: {type: varchar, length: 32, notnull: 0, am: {type: string, title: Телефон}}
+      name: {type: tinytext, notnull: 1, am: {type: string, title: Имя пользователя}}
+      roles:
+        virtual: 1
+        ref_to:
+          virtual: 1
+          table: ?_user_roles
+          fields: [id, title, uri]
+          use_ref: users2roles
+        am: {type: checkboxes, req: 0, title: Роли, empty: не назначены}
+    table:
+      PRIMARY KEY:  id
+      KEYS:
+        credentials: [login, pass, blocked]
+    actions:
+      list: [id, login, email, name, roles, blocked]
+      add: [pos, login, pass, email, phone, name, blocked, roles]
+      modify: [email, phone, name, blocked, roles]
+      show: all
+      change_pass: [pass]
+  
+  user_roles:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      title: {type: varchar, length: 32, notnull: 1, am: {type: string, req: 1, title: Роль}}
+      uri: {type: tinytext, am: {type: string, title: Домашняя страница}}
+    table:
+      PRIMARY KEY: id
+    actions:
+      list: [id, pos, title, uri]
+      add: [pos, title, uri]
+      modify: [title, uri]
+      
+  users2roles:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer}}
+      user_id: {type: int, notnull: 1, am: {type: integer}}
+      role_id: {type: int, notnull: 1, am: {type: integer}}
+    table:
+      PRIMARY KEY: id
+      KEYS:
+        user_id: [user_id]
+        role_id: [role_id]
+refs:
+  users2roles:
+    virtual: 1
+    join: left outer
+    type: N-M
+    tables:
+      - 
+        - {table: users, field: id}
+        - {table: users2roles, field: user_id}
+      -
+        - {table: user_roles, field: id}
+        - {table: users2roles, field: role_id}

@@ -1,0 +1,35 @@
+tables:
+  lists:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer}}
+      title: {type: varchar, length: 64, notnull: 1, am: {type: string, title: Название списка}}
+      sname: {type: varchar, length: 32, notnull: 1, am: {type: string, title: Системное имя}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+    table:
+      PRIMARY KEY: id
+      KEYS:
+        pos: [pos]
+    actions:
+      list: [id, title]
+      modify: [title]
+      smodify: [title, sname]
+      add: [title, pos, sname]
+      
+  lists_records:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer}}
+      pid: {type: int, notnull: 1, unsigned: 1, am: {type: integer, htmltype: hidden}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      value: {type: varchar, length: 32, notnull: 1, am: {type: string, req: 1, title: Значение}}
+      isDefault: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: по умолчанию, htmltype: checkbox, default: 'no', checked: 'yes', otitle: 'Использовать как значение по умолчанию', values: {no: нет, yes: да}}}
+      notDelete: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: не удаляемый, htmltype: checkbox, default: 'no', checked: 'yes', otitle: 'Не возможно удалить значение', values: {no: нет, yes: да}}}
+    table:
+      PRIMARY KEY:  id
+      KEYS:
+        pid: [pid]
+        pos: [pos]
+    actions:
+      list: [id, pid, value, isDefault, notDelete]
+      modify: [value, pid, isDefault]
+      smodify: [value, isDefault, notDelete]
+      add: [value, pos, isDefault]

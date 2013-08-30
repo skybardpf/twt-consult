@@ -1,0 +1,99 @@
+﻿# Common settings.
+app: zFramework sample app
+charset: utf-8
+mode: development # If set this mode will be used
+#default_mode: development
+load_named_conf: 0
+db_prefix: ds
+
+mvc:
+  dirs:
+    models: models
+    controllers: controllers
+    views: views
+  use_subdirs:
+    controllers: 0
+    models: 0
+    views: 0
+
+views:
+  forms:
+    label: '<label for="{id}">{title}</label>'
+use_smarty: 1
+smarty:
+  compile_dir: .zf_compiled/
+
+kcaptcha:
+  bgcolor: '255-255-255'
+
+page:
+  extract_variables: 1
+  extract_forms: 1
+
+default_controller: content
+has_common_controller: 1
+vars_keys: [id, pid, item, page, pos, application, iid]
+
+session:
+  save_path: .zf_tmp
+  autostart: 0
+
+# Settings depending on where application is running.
+run_at: 
+  local:
+    cond: {ip: [127.0.0.1, 192.168.0.100], host: []}
+    mode: development
+    db_engine: mysql
+    db_charset: utf-8
+    db_use_pconnection: 0
+    db_host: localhost
+    db_name: zf_app
+    db_user: root
+    db_pass: ferthuk
+
+  remote: &remote
+    cond: {host: [somehost.ru, www.somehost.ru]}
+    mode: production
+    db_engine: mysql
+    db_charset: utf-8
+    db_use_pconnection: 0
+    db_host: host
+    db_name: database
+    db_user: dbuser
+    db_pass: dbpass
+  default: *remote
+
+# Different modes settings.
+# In cond allowing following directives: host, ip, remote_ip. If no any matches found default_mode from Common settings will be used.
+# error_reporting can be one of the following: E_ALL, E_ALL-E_NOTICE, '0' - quotes must not be omitted
+modes:
+  development:
+    cond: {host: zf}
+    db_debug: {store_queries: 1, store_raw_queries: 1, store_results: 1, store_caller: 1, store_times: 1, times_precision: 5}
+    debug: {error_reporting: E_ALL, display_errors: 1, log_errors: 1, store_codesniplets: 1}
+    smarty: {debug: 0}
+
+  debug:
+    cond: {host: zf1, ip: 192.168.0.1}
+    db_debug: {store_queries: 1, store_raw_queries: 1, store_results: 1, store_caller: 1, store_times: 1, times_precision: 5}
+    debug: {error_reporting: E_ALL, display_errors: 1, log_errors: 1, store_codesniplets: 1}
+    smarty: {debug: 0}
+
+  production:
+    cond: {host: zf1}
+    db_debug: {store_queries: 0, store_raw_queries: 0, store_results: 0, store_caller: 0, store_times: 0, times_precision: 0}
+    debug: {error_reporting: E_ALL, display_errors: 0, log_errors: 1, store_codesniplets: 0, disabled: 1}
+    smarty: {debug: 0}
+
+# Application parameters for zSMS.
+info:
+  closed: {title: доступен для просмотра, type: shown}
+  company: {title: название компании, type: string}
+  mlink: {title: ссылка при клике на логотип, type: string}
+  phone: {title: телефон, type: string}
+  mail: {title: E-mail, type: mail}
+  skype: {title: skype, type: string}
+  footer: {title: футер, type: html}
+  terms: {title: условия использования, type: html}
+  policy: {title: политика конфиденциальности, type: html}
+  counters: {title: счетчики, type: text}

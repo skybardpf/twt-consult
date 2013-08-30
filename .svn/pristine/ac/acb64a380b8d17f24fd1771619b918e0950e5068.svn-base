@@ -1,0 +1,19 @@
+title: Статические страницы  
+
+actions:
+  show: [Просмотреть страницу, Просмотр страницы]
+  list: [Просмотреть страницы, Просмотр страниц, [delete]]
+  add: [Добавить страницу, Добавление страницы, Страница успешно добавлена, Страницу добавить не удалось, '[root_url]content/list/pid/[pid]']
+  modify: [Редактировать страницу, Редактирование страницы, Страница успешно отредактирована, Страницу отредактировать не удалось, '[root_url]content/list/pid/[pid]']
+  delete: [Удалить страницу, Удаление страницы, Страница успешно удалена, Страницу удалить не удалось, '', Вы уверены что хотите удалить эту страницу?]
+
+list_actions:
+  inline:
+    show: {link: 'content/show/id/[id]', put: {title: before}, icon: show}
+    title: {title: modify, link: 'content/modify/id/[id]/pid/[pid]'}
+    delete: {link: 'content/delete/id/[id]', icon: delete}
+  
+  after:
+    add: 'content/add/pid/[pid]'
+
+noContent: Страниц не найдено

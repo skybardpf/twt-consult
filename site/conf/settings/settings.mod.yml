@@ -1,0 +1,20 @@
+tables:
+  settings:
+    fields:
+      id: {type: int, notnull: 1, unsigned: 1, auto_increment: 1}
+      name: {type: varchar, length: 20, notnull: 1}
+      value: {type: text, notnull: 0}
+    table:
+      PRIMARY KEY: id 
+  images:
+    dont_install: 1
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, unsigned: 1, am: {type: integer}}
+      model: {type: varchar, length: 16, notnull: 1, am: {type: string, req: 1, title: Модель}}
+      pid: {type: int, notnull: 1, unsigned: 1, am: {type: integer, htmltype: hidden}}
+      pos: {type: int, notnull: 1, unsigned: 1, am: {type: integer, htmltype: hidden}}
+      title: {type: tinytext, notnull: 1, am: {type: string, title: Заголовок}}
+      image: {type: tinytext, notnull: 1, am: {type: image, req: 1, title: Изображение}}
+      hidden: {type: enum('yes','no'), notnull: 1, am: {type: string, title: Скрытая, htmltype: radio, default: 'no', values: {yes: да, no: нет}}}
+    table:
+      PRIMARY KEY:  id

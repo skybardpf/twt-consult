@@ -1,0 +1,24 @@
+tables:
+  content:
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      pid: {type: int, length: 10, notnull: 1, am: {type: integer, title: Родительский раздел, htmltype: select}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      path: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Адрес страницы}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Заголовок}}
+      description: {type: tinytext, notnull: 0, am: {type: string, req: 0, title: Описание}}
+      content: {type: longtext, notnull: 1, am: {type: ckhtml, htmltype: ckhtml, req: 1, title: Текст}}
+      hidden: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: Скрытый, otitle: Скрыть, htmltype: checkbox, default: 'no', checked: 'yes', values: {no: нет, yes: да}}}
+    table:
+      PRIMARY KEY: id
+    foreign:
+      pid_ttl: {table: content, field: title, use_ref: content2content, am: pid}
+    actions:
+      list: [id, pos, path, title, hidden]
+      show: [pid, path, title, hidden, description, content]
+      modify: [title, pid, path, description, content, hidden]
+      modify_main: [title, description, content]
+      add: [pid, title, path, pos, description, content, hidden]
+      menu: [id, pid, path, title, description]
+refs:
+  content2content: {type: M-1, self: [pid, id], join: LEFT, alias: content_title}

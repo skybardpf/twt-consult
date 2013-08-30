@@ -1,0 +1,21 @@
+title: Валюта
+
+actions:
+  show: [Просмотреть валюту, Просмотр валюты]
+  list: [Просмотреть валюты, Просмотр валют, [delete]]
+  add: [Добавить валюту, Добавление валюты, Валюта успешно добавлена, Валюту добавить не удалось, '[root_url]currencies/list/']
+  modify: [Редактировать валюту, Редактирование валюты, Валюта успешно отредактирована, Валюту отредактировать не удалось, '[root_url]currencies/list/']
+  delete: [Удалить валюту, Удаление валюты, Валюта успешно удалена, Валюту удалить не удалось, '[root_url]currencies/list/', 'Вы уверены, что хотите удалить эту валюту?']
+  change: [Изменить отображение, Измение отображения]
+
+list_actions:
+  inline:
+    show: {link: 'currencies/show/id/[id]', put: {title: before}, icon: show}
+    title: {title: modify, link: 'currencies/modify/id/[id]'}
+    delete: {link: 'currencies/delete/id/[id]', icon: delete}
+    active: {title: change, link: 'currencies/change/id/[id]/field/active/ret_action/list'}
+
+  after:
+    add: 'currencies/add'
+
+noContent: Валют не найдено

@@ -1,0 +1,14 @@
+engine: like
+like:
+  matchMode: ALL
+  order: {field2: asc, field3: asc}
+  buildExcerpts:
+    before_match: '<b>'
+    after_match: '</b>'
+    chunk_separator: '...'
+    limit: 256
+
+links:
+  1: {url: '/content/id/[id]/', tableName: 'content', fields: [id, title, description, content, pos], where: {hidden: 'no'}}
+  2: {url: '/news/new/id/[id]/', tableName: 'news', fields: [id, title, anonce, text, "' '"], where: {active: 'yes'}}
+  3: {url: '/services/service/id/[id]/', tableName: 'services', fields: [id, title, text, price, pos], where: {active: 'yes'}}

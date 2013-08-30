@@ -1,0 +1,51 @@
+tables:
+
+  Department:
+    fields:
+      ID: {type: int, auto_increment: 1, unsigned: 1}
+      Name: {type: varchar, length: 32}
+    table: 
+      PRIMARY KEY: ID
+
+  Manager:
+    fields:
+      ID: {type: int, auto_increment: 1, unsigned: 1}
+      dName: {foreign: 1, ref_to: {table: Department, field: Name, use_ref: m2d}}
+      Department_ID: {type: tinyint, unsigned: 1}
+      Name: {type: varchar, length: 32}
+    table: 
+      PRIMARY KEY: ID
+
+  Client:
+    fields:
+      ID: {type: int, auto_increment: 1, unsigned: 1}
+      Name: {type: varchar, length: 32}
+    table: 
+      PRIMARY KEY: ID
+
+  Request:
+    fields:
+      ID: {type: int, auto_increment: 1, unsigned: 1}
+      mName: {foreign: 1, ref_to: {table: Manager, field: Name, use_ref: r2m}}
+      cName: {foreign: 1, ref_to: {table: Client, field: Name, use_ref: r2c}}
+      dName: {foreign: 1, ref_to: {table: Department, field: Name, use_ref: m2d, via: Manager}}
+      Manager_ID: {type: int, unsigned: 1}
+      Client_ID: {type: int, unsigned: 1}
+      someField: {type: varchar, length: 32, notnull: 1}
+      rDate: {type: datetime}
+    table:
+      PRIMARY KEY: ID
+      KEY: Manager_ID Manager_ID
+refs:
+  m2d: {type: M-1, tables: {Manager: Department_ID, Department: ID}}
+  r2m: {type: M-1, tables: {Request: Manager_ID, Manager: ID}}
+  r2c: {type: M-1, tables: {Request: Client_ID, Client: ID}}
+
+actions:
+  listManagers:
+   title: {action: Просмотреть менеджеров, location: Просмотр менеджеров}
+   showInMenu: 1
+   table: Manager
+   fields: {ID: 1, Name: 1, dName: {title: 'Департамент', action: listDepartments, by: {pid: Department_ID}}, Department_ID: 0}
+
+      

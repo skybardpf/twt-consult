@@ -1,0 +1,50 @@
+title: Справочники
+complex: 1
+
+actions:
+# Справочники
+  show_list: [Просмотреть справочник, Просмотр справочника]
+  list_lists: [Просмотреть справочники, Просмотр справочников, [delete_list]]
+  add_list: [Добавить справочник, Добавление справочника, Справочник успешно добавлен, Справочник добавить не удалось, '[root_url]lists/list_lists/']
+  modify_list:
+    - Редактировать справочник
+    - Редактирование справочника
+    - Справочник успешно отредактирован
+    - Справочник отредактировать не удалось
+    - '[root_url]lists/list_lists/'
+  delete_list: [Удалить справочник, Удаление справочника, Справочник успешно удален, Справочник удалить не удалось, '[root_url]lists/list_lists/', Вы уверены что хотите удалить этот справочник?]
+
+# Записи справочников
+  show_record: [Просмотреть запись, Просмотр записи]
+  list_records: [Просмотреть записи, Просмотр записей, [delete_record]]
+  add_record: [Добавить запись, Добавление записи, Запись успешно добавлена, Запись добавить не удалось, '[root_url]lists/list_records/pid/[pid]/']
+  modify_record:
+    - Редактировать запись
+    - Редактирование записи
+    - Запись успешно отредактирована
+    - Запись отредактировать не удалось
+    - '[root_url]lists/list_records/pid/[pid]/'
+  delete_record: [Удалить запись, Удаление записи, Запись успешно удалена, Запись удалить не удалось, '[root_url]lists/list_records/pid/[pid]/', Вы уверены что хотите удалить эту запись?]
+
+list_actions:
+  inline:
+    lists:
+      list_records: {link: 'lists/list_records/pid/[id]', put: {title: before}, icon: show}
+      title: {title: modify_list, link: 'lists/modify_list/id/[id]'}
+      delete_list: {link: 'lists/delete_list/id/[id]', icon: delete}
+    
+    records:
+      show_record: {link: 'lists/show_record/id/[id]', put: {title: value}, icon: show}
+      value: {title: modify, link: 'lists/modify_record/pid/[pid]/id/[id]'}
+      delete_record: {link: 'lists/delete_record/id/[id]', icon: delete}
+
+  after:
+    lists:
+      add_list: 'lists/add_list/'
+    records:
+      add_record: 'lists/add_record/pid/[pid]'
+      
+
+noContent: 
+  lists: Справочников не найдено
+  records: Записей не найдено

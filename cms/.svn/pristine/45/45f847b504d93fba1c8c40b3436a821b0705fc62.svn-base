@@ -1,0 +1,1 @@
+{loadview name="actions/list"}

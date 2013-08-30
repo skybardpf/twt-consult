@@ -1,0 +1,3 @@
+#header, #top-menu, .bread-crumbs, .after_actions, #footer, #leftPanel, #closeDiv, .sort_arrows, .pos *, .del * {
+    display:none;
+}

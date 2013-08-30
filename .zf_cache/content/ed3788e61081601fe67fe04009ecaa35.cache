@@ -1,0 +1,82 @@
+<?php $data=array (
+  3 => 
+  array (
+    'id' => '3',
+    'pid' => '1',
+    'path' => 'about',
+    'title' => 'О компании',
+    'description' => '',
+    'count' => '0',
+    'level' => 0,
+    'url' => '/about',
+  ),
+  5 => 
+  array (
+    'id' => '5',
+    'pid' => '1',
+    'path' => 'rights',
+    'title' => 'Правовая информация',
+    'description' => '',
+    'count' => '0',
+    'level' => 0,
+    'url' => '/rights',
+  ),
+  6 => 
+  array (
+    'id' => '6',
+    'pid' => '1',
+    'path' => 'contacts',
+    'title' => 'КОНТАКТЫ',
+    'description' => '',
+    'count' => '1',
+    'level' => 0,
+    'url' => '/contacts',
+    'children' => 
+    array (
+      2 => 
+      array (
+        'id' => '2',
+        'pid' => '6',
+        'path' => 'contacts',
+        'title' => 'Контакты',
+        'description' => 'Контакты',
+        'count' => '0',
+        'level' => 1,
+        'url' => '/contacts/contacts',
+      ),
+    ),
+  ),
+  7 => 
+  array (
+    'id' => '7',
+    'pid' => '1',
+    'path' => 'integracia',
+    'title' => 'IT-ИНТЕГРАЦИЯ',
+    'description' => '',
+    'count' => '0',
+    'level' => 0,
+    'url' => '/integracia',
+  ),
+  8 => 
+  array (
+    'id' => '8',
+    'pid' => '1',
+    'path' => 'yandex_5bf43eeeee5bbad8.html',
+    'title' => 'Поисковая страница',
+    'description' => '',
+    'count' => '0',
+    'level' => 0,
+    'url' => '/yandex_5bf43eeeee5bbad8.html',
+  ),
+  9 => 
+  array (
+    'id' => '9',
+    'pid' => '1',
+    'path' => 'requests',
+    'title' => 'Заявки',
+    'description' => '',
+    'count' => '0',
+    'level' => 0,
+    'url' => '/requests',
+  ),
+);

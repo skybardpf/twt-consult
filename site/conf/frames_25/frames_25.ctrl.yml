@@ -1,0 +1,21 @@
+title: 25 кадры
+ 
+actions: 
+  show: [Просмотреть 25 кадр, Просмотр 25 кадра]
+  change: [Изменить отображение, Измение отображения]
+  list: [Просмотреть 25 кадры, Просмотр 25 кадров, [delete]] 
+  add: [Добавить 25 кадр, Добавление 25 кадра, 25 кадр успешно добавлен, 25 кадр добавить не удалось, '[root_url]frames_25/list/'] 
+  modify: [Редактировать 25 кадр, Редактирование 25 кадра, 25 кадр успешно отредактирован, 25 кадр отредактировать не удалось, '[root_url]frames_25/list/'] 
+  delete: [Удалить 25 кадр, Удаление 25 кадра, 25 кадр успешно удален, 25 кадр удалить не удалось, '[root_url]frames_25/list/', 'Вы уверены, что хотите удалить этот 25 кадр?'] 
+ 
+list_actions: 
+  inline: 
+    show: {link: 'frames_25/show/id/[id]', put: {created: before}, icon: show}
+    created: {title: modify, link: 'frames_25/modify/id/[id]'}
+    delete: {link: 'frames_25/delete/id/[id]', icon: delete}
+    active: {title: change, link: 'frames_25/change/id/[id]/field/active/ret_action/list'}
+ 
+  after: 
+    add: 'frames_25/add' 
+ 
+noContent: 25 кадров не найдено

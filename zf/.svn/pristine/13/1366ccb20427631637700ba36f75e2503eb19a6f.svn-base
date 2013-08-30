@@ -1,0 +1,36 @@
+Index: Loader.php
+===================================================================
+--- Loader.php	(revision 631)
++++ Loader.php	(working copy)
+@@ -74,6 +74,8 @@
+      * @var integer
+      */
+     protected $_lineNumber = 0;
++    
++    protected $_borroCounter = 0;
+ 
+     /**
+      * Create a new YAML parser.
+@@ -267,7 +269,7 @@
+     protected function _parseLine($line)
+     {
+         $array = array();
+-
++		$this->_borroCounter = 0;
+         $line = trim($line);
+         if (preg_match('/^-(.*):$/', $line)) {
+             // It's a mapped sequence
+@@ -486,9 +488,11 @@
+         }
+ 
+         // Check for mappings
+-        if (preg_match_all('/{(.+)}/U', $inline, $maps)) {
+-            $inline = preg_replace('/{(.+)}/U', 'YAMLMap', $inline);
++        $u = (($this->_borroCounter % 2) ? 'U' : '');
++        if (preg_match_all('/{(.+)}/'.$u, $inline, $maps)) {
++            $inline = preg_replace('/{(.+)}/'.$u, 'YAMLMap', $inline);
+             $maps = $maps[0];
++            $this->_borroCounter++;
+         }
+ 
+         $explode = explode(', ', $inline);

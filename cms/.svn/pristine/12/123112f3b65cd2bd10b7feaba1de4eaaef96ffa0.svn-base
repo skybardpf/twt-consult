@@ -1,0 +1,58 @@
+﻿# Common settings.
+app: zFramework admin
+charset: utf-8
+#mode: development # If set this mode will be used
+#default_mode: development
+load_named_conf: 0
+#db_prefix: cms_
+zf_root_url: /
+access_denied_redirect: true #redirect to homepage if acess is denied in cms
+
+managed_app: site
+
+mvc:
+  dirs:
+    models: modules
+    controllers: modules
+    views: views
+  use_subdirs:
+    controllers: 1
+    models: 1
+    views: 1
+
+views:
+  forms:
+    label: '<label for="{id}">{title}</label><br>'
+    input: '<div class="input">{input}</div><br>'
+    label_hidden: ''
+    input_hidden: '{input}'
+    group:
+      start: '<table class="group"><tr><td style="padding-right: 10px;"><nobr>{title}</nobr></td><td class="line">&nbsp;</td></table><div id="{id}">'
+      end: '</div>'
+use_smarty: 1
+smarty:
+  compile_dir: .zf_compiled/
+  cache_dir: .zf_cache/
+
+kcaptcha:
+  bgcolor: '255-255-255'
+
+page:
+  extract_variables: 1
+  extract_forms: 1
+
+default_controller: content
+has_common_controller: 1
+vars_keys: [id, pid, item, page, pos, sort, dir, module, type, application, iid, set_id, model, file, field, action, ctrl, popup, ajax, like, ret_url, main_view, lang]
+
+session:
+  save_path: .zf_tmp
+  autostart: 1
+  
+types:
+  html:
+    features: ['Styles', 'Paragraph', 'FullScreen', '|', 'Undo', 'Redo', 'Bold', 'Italic', 'Underline', '|', 'Hyperlink', 'Bookmark', '|', 'Image', '|', 'Paste', 'PasteText', 'PasteWord', '|', 'Numbering', 'Bullets', 'Indent', 'Outdent', '|', 'Table', 'Guidelines', '|', '|', 'XHTMLSource']
+    attrs:
+      css: /public/site/css/wysiwyg.css
+    addons:
+      AssetManager:"modalDialogShow('/public/zf/wysiwyg/assetmanager/assetmanager.php?apppath=cms',640,445);"

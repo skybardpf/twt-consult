@@ -1,0 +1,39 @@
+#debugDiv {
+	max-height: 500px;
+	width: 100%;
+	overflow: scroll;
+	background: #F0F0F0;
+	display: none;
+	padding: 20px 10px 20px 40px;
+	font-family: sans-serif;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    z-index: 18000;
+}
+
+#debugDiv div.debug_item {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.debug_type {font-weight: bold;}
+
+.warning {color: #ff0000;}
+.sql_error {color: #ff0000;}
+.log {color: #808080;}
+.debug_in, .debug_file, .debug_at, .debug_line {color: #ACACAC; font-size: 80%;}
+
+.debug_body {display: none;}
+
+.debug_title_div {}
+
+.debug_title_hover {padding-left: 5px;}
+a.debug_line {color: #585858; cursor: help;}
+.zf_debug_alerter {color: #990000; font-size: 12pt; font-weight: bold;}
+
+#debugDiv {
+	color:#000;
+	font-size:12px;
+	font-family:"Courier New", Courier, monospace;
+}

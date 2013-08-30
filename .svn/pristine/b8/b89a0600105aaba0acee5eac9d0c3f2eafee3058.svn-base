@@ -1,0 +1,11 @@
+tables:
+  permissions:
+    fields:
+      id: {type: int, notnull: 1, unsigned: 1, auto_increment: 1}
+      role_id: {type: int, notnull: 1}
+      ctrlName: {type: varchar, length: 32, notnull: 1}
+      actionName: {type: varchar, length: 32, notnull: 1}
+    table:
+      PRIMARY KEY: id
+      KEYS:
+        can_key: [role_id]

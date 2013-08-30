@@ -1,0 +1,11 @@
+apps:
+  cms: cms
+  site: site
+
+host_mapping:
+#  zf-app1: [zf-app1, zf-app11]
+#  zf-app2: [zf-app2, zf-app22]
+
+uri_mapping:
+  cms: {uri: [/cms/, /admin/], bind2hosts: any}
+default_app: site

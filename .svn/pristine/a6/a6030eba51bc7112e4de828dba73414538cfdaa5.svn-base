@@ -1,0 +1,187 @@
+tables:
+  entity_req:
+    fields:
+      id: {type: int, length: 10, unsigned: 1, auto_increment: 1, notnull: 1, am: {type: integer, title: Номер}}
+      req_num: {type: tinytext, am: {type: string, title: Номер заявки}}
+      req_status: {type: enum('yes','no'), default: 'no', notnull: 1, am: {type: string, title: Статус, htmltype: checkbox, default: 'no', checked: 'yes', unchecked: 'no', values: {no: не отправлено, yes: отправлено}}}
+      created: {type: date, notnull: 1, am: {type: date, req: 1, title: Дата заявки}}
+#      url: {type: tinytext, am: {type: string, title: URL}}
+      contact: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Контактное лицо}}
+#      phone: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Контактный телефон}}
+      mail: {type: tinytext, notnull: 1, am: {type: mail, req: 1, title: Контактный e-mail}}
+      jur_country_id: {type: int, length: 10, notnull: 1, am: {type: select, null: Не выбрана, title: Юрисдикция, req: 1}}
+      company_name: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Желательное название компании}}
+      user_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Пользователь}}
+      kind_activities: 
+        virtual: 1
+        ref_to:
+          virtual: 1
+          table: kind_activities
+          fields: [id, title]
+          use_ref: entity2kind_activities
+        am: {type: checkboxes, title: Род деятельности, del: ' ', field_name: title, title_field: title}
+      own_kind_activities: {type: text, am: {type: text, title: Свой род деятельности}}
+      turnover: {type: int, notnull: 0, am: {type: integer, title: Ожидаемый оборот, attrs: {maxlength: 9}}} 
+      currency_id:  {type: int, length: 10, notnull: 0, am: {type: select, null: Не выбрана, title: Валюта, req: 1}}
+      country_source:
+        virtual: 1
+        ref_to:
+          virtual: 1
+          table: country_source
+          fields: [id, title]
+          use_ref: entity2country_source
+        am: {type: checkboxes, title: Страны источники входящих денежных переводов, del: ' ', field_name: title, title_field: title, alias: country_source}
+      country_receiver:
+        virtual: 1
+        ref_to:
+          virtual: 1
+          table: country_receiver
+          fields: [id, title]
+          use_ref: entity2country_receiver
+        am: {type: checkboxes, title: Страны назначения исходящих денежных переводов, del: ' ', field_name: title, title_field: title, alias: country_receiver}
+    table:
+      PRIMARY KEY: id
+    foreign:
+      jurisdiction: {table: countries, field: title, use_ref: entity2jur_countries, am: jur_country_id}
+      price_final: {table: countries, field: price_final, use_ref: entity2jur_countries, am: jur_country_id}
+      currency: {table: currencies, field: title, use_ref: entity2currencies, am: {type: select, null: Не выбрана, title: Валюта}}
+    actions:
+      list: [id, created, req_num, req_status, contact, mail, jur_country_id, company_name, kind_activities, own_kind_activities, turnover, currency_id]
+      show: [created, req_num, req_status, contact, mail, jur_country_id, company_name, kind_activities, own_kind_activities, turnover, currency_id, country_source, country_receiver]
+      modify: [req_num, contact, mail, jur_country_id, company_name, kind_activities, own_kind_activities, turnover, currency_id, country_source, country_receiver]
+      add: [req_num, contact, mail, jur_country_id, company_name, kind_activities, own_kind_activities, turnover, currency_id, country_source, country_receiver]
+      site_form: [contact, mail, jur_country_id, company_name, kind_activities, own_kind_activities, turnover, currency_id, country_source, country_receiver]
+      site_mail: [contact, mail, jur_country_id, jurisdiction, company_name, kind_activities, own_kind_activities, turnover, currency_id, currency, country_source, country_receiver]
+      cabinet: [id, created, jurisdiction, company_name, kind_activities, price_final]
+      showorder: [id, created, contact, mail, jurisdiction, company_name, kind_activities, own_kind_activities, turnover, currency, country_source, country_receiver]
+
+  countries:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: string, title: Отображать на сайте, htmltype: checkbox, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+  entity2kind_activities:
+    fields:
+      entity_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Заявка на юр. лицо}}
+      kind_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Род деятельности}}
+    table:
+      UNIQUE:
+        entity_kind_activities: [entity_id, kind_id]
+
+  entity2country_source:
+    fields:
+      entity_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Заявка на юр. лицо}}
+      country_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Страны источники входящих денежных переводов}}
+    table:
+      UNIQUE:
+        entity_country_source: [entity_id, country_id]
+
+  entity2country_receiver:
+    fields:
+      entity_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Заявка на юр. лицо}}
+      country_id: {type: int, notnull: 1, unsigned: 1, am: {type: select, title: Страны назначения исходящих денежных переводов}}
+    table:
+      UNIQUE:
+        entity_country_source: [entity_id, country_id]
+
+  kind_activities:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+  currencies:
+    dont_install: 1
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+
+refs:
+  entity2jur_countries: {type: M-1, join: left outer, tables: {entity_req: jur_country_id, countries: id, alias: jur_countries}}
+  entity2currencies: {type: M-1, join: left outer, tables: {entity_req: currency_id, currencies: id}}
+  entity2kind_activities:
+    virtual: 1
+    join: left outer
+    type: N-M
+    tables:
+      -
+        - {table: entity_req, field: id}
+        - {table: entity2kind_activities, field: entity_id}
+      -
+        - {table: entity2kind_activities, field: kind_id}
+        - {table: kind_activities, field: id}
+
+  entity2country_source:
+    virtual: 1
+    join: left outer
+    type: N-M
+    tables:
+      -
+        - {table: entity_req, field: id}
+        - {table: entity2country_source, field: entity_id}
+      -
+        - {table: entity2country_source, field: country_id}
+        - {table: countries, field: id, alias: country_source}
+
+  entity2country_receiver:
+    virtual: 1
+    join: left outer
+    type: N-M
+    tables:
+      -
+        - {table: entity_req, field: id}
+        - {table: entity2country_receiver, field: entity_id}
+      -
+        - {table: entity2country_receiver, field: country_id}
+        - {table: countries, field: id, alias: country_receiver}
+
+mail:
+  message_entity:
+    from: 'no_reply@twt.ru'
+    subject: 'Новая заявка на юр. лицо № [req_id]'
+    type: text/html
+    message: |
+      <p>Здравствуйте</p>
+      <br>Вы подали заявку на сайте [site_name]
+      <br>Номер заявки: [req_id]
+      <br>Дата заявки: [created]
+      <br>Контактное лицо: [contact]
+      <br>Контактный e-mail: [mail]
+      <br>Юрисдикция: [jurisdiction]
+      <br>Желательное название компании: [company_name]
+      <br>Род деятельности: [kind_activities]
+      <br>Свой род деятельности: [own_kind_activities]
+      <br>Ожидаемый оборот: [turnover]
+      <br>Валюта: [currency]
+      <br>Страны источники: [country_source]
+      <br>Страны приемники: [country_receiver]
+  message_admin:
+    from: 'no_reply@twtconsult.com'
+    subject: 'Поступила заявка на юр. лицо № [req_id]'
+    type: text/html
+    message: |
+      <p>[NO_REST]</p> 
+      <p>Поступила заявка на юр. лицо № [req_id]</p> <br />
+      Номер заявки: [req_id] <br />
+      Дата заявки: [created] <br />
+      Контактное лицо: [contact] <br />
+      Контактный e-mail: [mail] <br />
+      Юрисдикция: [jurisdiction] <br />
+      Желательное название компании: [company_name] <br />
+      Род деятельности: [kind_activities] <br />
+      Свой род деятельности: [own_kind_activities] <br />
+      Ожидаемый оборот: [turnover] <br />
+      Валюта: [currency] <br />
+      Страны источники: [country_source] <br />
+      Страны приемники: [country_receiver] 
+      <div>Строка 1С: [json]</div>
+  repl:
+    site_name: "TWT"
+  date_format: H:i:s d.m.Y

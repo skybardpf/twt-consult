@@ -1,0 +1,19 @@
+title: Время
+ 
+actions: 
+  show: [Просмотреть время, Просмотр времени] 
+  list: [Просмотреть времена, Просмотр времён, [delete]] 
+  add: [Добавить время, Добавление времени, Время успешно добавлено, Время добавить не удалось, '[root_url]times/list/'] 
+  modify: [Редактировать время, Редактирование времени, Время успешно отредактировано, Время отредактировать не удалось, '[root_url]times/list/'] 
+  delete: [Удалить время, Удаление времени, Время успешно удалено, Время удалить не удалось, '[root_url]times/list/', 'Вы уверены, что хотите удалить это время?'] 
+ 
+list_actions: 
+  inline: 
+    show: {link: 'times/show/id/[id]', put: {title: before}, icon: show} 
+    title: {title: modify, link: 'times/modify/id/[id]'} 
+    delete: {link: 'times/delete/id/[id]', icon: delete} 
+ 
+  after: 
+    add: 'times/add' 
+ 
+noContent: Времён не найдено

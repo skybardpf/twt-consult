@@ -1,0 +1,92 @@
+tables:
+  siteusers:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer, title: ID}}
+      name: {type: varchar, length: 255, notnull: 1, am: {type: string, req: 1, title: ФИ, validate: {trimNE: Поле 'ФИ' не должно быть пустым}}}
+      email: {type: varchar, length: 80, notnull: 0, am: {type: string, req: 1, title: E-mail(логин), validate: {trimNE: Поле 'E-mail(логин)' не должно быть пустым}}}
+      password:  {type: varchar, length: 32, notnull: 1, am: {type: pass, req: 1, title: Пароль, validate: {trimNE: Поле 'Пароль' не должно быть пустым}}}
+      password2:  {am: {not_exists_in_db: 1, type: pass, req: 1, title: Повторите пароль, validate: {trimNE: Поле 'Повторите пароль' не должно быть пустым}}}
+      phone: {type: varchar, length: 80, notnull: 0, am: {type: string, req: 1, title: Телефон}}
+      uniq_key: {type: tinytext, am: {type: string, title: Уникальный ключ для смены пароля}}
+      key_date: {type: datetime, am: {type: datetime, title: Дата выдачи уникального ключа}}
+    table:
+      PRIMARY KEY:  id
+    actions:
+      list: [id, name, email, phone]
+      add: [name, email, phone, password]
+      modify: [name, email, phone]
+      show: [id, name, email, password, phone, name, name]
+      site_authorize: [email, password]
+      site_reg: [name, email]
+      user: [id, name, email, phone]
+      login: [id, name, email, phone]
+      cabinet: [name, email, phone]
+      change_pass: [password, password2]
+
+  companies:
+    fields:
+      id: {type: int, notnull: 1, auto_increment: 1, am: {type: integer, title: ID}}
+      created: {type: datetime, notnull: 1, am: {type: date, req: 1, title: Дата создания}}
+      name: {type: varchar, length: 255, notnull: 1, am: {type: string, req: 1, title: Наименование организации, validate: {trimNE: Поле 'Наименование организации' не должно быть пустым}}}
+      jur_address: {type: varchar, length: 255, notnull: 1, am: {type: string, req: 1, title: Юр. адрес, validate: {trimNE: Поле 'Юр. адрес' не должно быть пустым}}}
+      address: {type: varchar, length: 255, notnull: 1, am: {type: string, req: 1, title: Фактический адрес, validate: {trimNE: Поле 'Фактический адрес' не должно быть пустым}}}
+      inn: {type: varchar, length: 12, notnull: 0, am: {type: integer, req: 1, title: ИНН, attrs: {maxlength: 12}, validate: {trimNE: Поле 'ИНН' не должно быть пустым, innInt: Поле 'ИНН' должно содержать 10 или 12 цифр}}}
+      kpp: {type: varchar, length: 9, notnull: 0, am: {type: integer, req: 1, title: КПП, attrs: {maxlength: 9}, validate: {trimNE: Поле 'КПП' не должно быть пустым, kppInt: Поле 'КПП' должно содержать 9 цифр}}}
+      account: {type: varchar, length: 20, notnull: 0, am: {type: string, req: 1, title: Расчётный счет, validate: {trimNE: Поле 'Расчётный счет' не должно быть пустым}}}
+      bank: {type: varchar, length: 100, notnull: 0, am: {type: string, req: 1, title: Банк, validate: {trimNE: Поле 'Банк' не должно быть пустым}}}
+      bik: {type: varchar, length: 9, notnull: 0, am: {type: string, req: 1, title: БИК, validate: {trimNE: Поле 'БИК' не должно быть пустым}}}
+      korschot: {type: varchar, length: 20, notnull: 0, am: {type: string, req: 1, title: КорСчет, validate: {trimNE: Поле 'КорСчет' не должно быть пустым}}}
+      signer: {type: varchar, length: 50, notnull: 0, am: {type: string, req: 1, title: Должность подписанта, validate: {trimNE: Поле 'Должность подписанта' не должно быть пустым}}}
+      fio: {type: varchar, length: 255, notnull: 0, am: {type: string, req: 1, title: ФИО подписанта, validate: {trimNE: Поле 'ФИО подписанта' не должно быть пустым}}}
+      user_id: {type: int, length: 10, notnull: 1, am: {type: integer, title: Пользователь, htmltype: select, null: Не выбранно}}
+    table:
+      PRIMARY KEY:  id
+      KEYS:
+        user_id: [user_id]
+    actions:
+      list: [id, name, jur_address, address, inn, kpp, fio, user_id, created]
+      add: [name, jur_address, address, inn, kpp, account, bik, signer, fio]
+      modify: [name, jur_address, address, inn, kpp, account, bik, signer, fio]
+      show: all
+      cabinet: [id, name, jur_address, address, inn, kpp, account, bik, signer, fio, created]
+      view: [name, jur_address, address, inn, kpp, account, bik, signer, fio]
+
+mail:
+  register:
+    from: 'no_reply@twtconsult.com'
+    subject: 'Вы зарегистрировались на сайте [site_name]'
+    type: text/html
+    message: |
+      <p>Уважаемый [name]!</p>
+      Вы зарегистрировались на сайте [site_name]. <br/>
+      Ваш логин для авторизации: [email]<br/>
+      Ваш пароль для авторизации: [pass]<br/>
+      <p>С уважением, [site_name]</p>
+  register_admin:
+    from: 'no_reply@twtconsult.com'
+    subject: 'Новый пользователь на сайте'
+    type: text/html
+    message: |
+      <p>Уважаемый администратор!</p>
+      На сайте зарегистрировался новый пользователь [name] ([email]).<br/>
+  remind_pass:
+    from: 'no_reply@twtconsult.com'
+    subject: '[site_name]: Восстановление пароля'
+    type: text/html
+    message: |
+      <p>Вы запросили восстановление пароля</p>
+      <hr>Перейдите по <a href="[link]">ссылке</a> и введите новый пароль.
+      <hr>
+      [DATE]<br>
+  change_pass:
+    from: 'no_reply@twtconsult.com'
+    subject: '[site_name]: Смена пароля'
+    type: text/html
+    message: |
+      <p>Вы изменили пароль</p>
+      <hr>Ваш пароль: [pass].
+      <hr>
+      [DATE]<br>
+  repl:
+    site_name: "TWT"
+  date_format: H:i:s d.m.Y

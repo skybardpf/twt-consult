@@ -1,0 +1,170 @@
+#htmltypes: [text, hidden, textarea, radio, checkbox, file, password, shtml, select, mselect, captcha]
+types:
+  
+  integer: 
+    htmltype: text
+    validate: {is_numeric: not_a_number}
+    
+  float: 
+    htmltype: text
+    validate: {is_numeric: not_a_number}
+
+  string: 
+    htmltype: text
+    spchars: yes
+    validate: {is_string: not_a_string}
+#    strip_tags: yes
+    allowed_tags: no
+
+  color: 
+    htmltype: color
+    validate: {is_string: not_a_string}
+
+  expr:
+    basetype: string 
+    validate: {is_expr: not_a_expr}
+
+  login:
+    spchars: yes
+    basetype: expr
+    htmltype: text
+    validate: {is_unique: not_a_unique}
+
+  mail:
+    spchars: yes
+    htmltype: mail
+    validate: {is_mail: mail_incorrect}
+  
+  pass:
+    htmltype: pass
+  
+  multimail:
+    spchars: yes
+    htmltype: multimail
+    
+  multiphone:
+    spchars: yes
+    htmltype: multimail
+    
+  doublemultitext:
+    spchars: yes
+    htmltype: doublemultitext
+  
+  raw_text:
+    htmltype: textarea
+    validate: {text: not_a_text}
+  
+  text:
+    spchars: yes
+    htmltype: textarea
+    convert_rn: yes
+#    strip_tags: yes
+
+  youtube_video:
+    htmltype: text
+    strip_tags: yes
+    allowed_tags: '<video><object><embed><param><iframe>'
+
+  time: 
+    htmltype: time
+    validate: {time: time_incorrect}
+    attrs: {class: zf_time}
+
+  date:
+    htmltype: date
+    validate: {is_date: date_incorrect}
+    attrs: {class: zf_date}
+
+  arraystr:
+    htmltype: arraystr
+    validate: {is_string: not_a_string}
+
+  datetime:
+    htmltype: datetime
+    validate: {is_datetime: datetime_incorrect}
+    attrs: {class: zf_datetime}
+
+  date_boxes:
+    basetype: datetime
+    htmltype: date_boxes
+    validate: {is_date_box: date_incorrect}
+
+  ip:
+    basetype: string
+    htmltype: text
+
+  year: {htmltype: year}
+  
+  shtml:
+    htmltype: shtml
+    strip_tags: yes
+    allowed_tags: "<b><i><u><br><p><strong><em><span>"
+    features: ['FullScreen', '|', 'Undo','Redo','Bold','Italic','Underline','|','Paste','PasteText','PasteWord','|','XHTMLSource']
+    validate: {allowed_tags: *shtml_allowed_tags}
+    prepare_for_db: {striptags: *shtml_allowed_tags}
+    
+  html:
+    htmltype: html
+    allowed_tags: "<b><i><u>"
+    features: ['FullScreen', '|', 'Undo', 'Redo', '|', 'Paragraph', '|', 'Bold', 'Italic', 'Underline', '|', 'Hyperlink', 'Bookmark', '|', 'Image', '|', 'Paste', 'PasteText', 'PasteWord', '|', 'Numbering', 'Bullets', 'Indent', 'Outdent', '|', 'Table', 'Guidelines', '|', 'XHTMLSource']
+    addons: {AssetManager: "modalDialogShow('/public/zf/wysiwyg/assetmanager/assetmanager.php?appname={app_name}&apppath={app_path}',640,445);"}
+    validate: {allowed_tags: *html_allowed_tags}
+    prepare_for_db: {striptags: *html_allowed_tags}
+
+  ckhtml:
+    htmltype: ckhtml
+    toolbar:
+      - ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates']
+      - ['Maximize', 'ShowBlocks']
+      - ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print']
+      - ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat']
+      - '/'
+      - ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript']
+      - ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', 'CreateDiv']
+      - ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+      - ['Link', 'Unlink', 'Anchor']
+      - '/'
+      - ['Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar']
+      - ['TextColor', 'BGColor']
+      - '/'
+      - ['Styles', 'Format', 'Font', 'FontSize']
+    
+  
+  radio: {htmltype: radio, attrs: {class: zf_radio}}
+  checkbox: {htmltype: checkbox, attrs: {class: zf_radio}}
+  checkboxes: {htmltype: checkboxes, attrs: {class: zf_radio}}
+  checkboxesarr: {htmltype: checkboxesarr, attrs: {class: zf_radio}}
+  select: {htmltype: select}
+  tselect: {htmltype: tselect}
+  geo: {htmltype: geo}
+  mselect: {htmltype: mselect, attrs: {multiple: 'true', size: 3}}
+  metroselect: {htmltype: metroselect}
+  captcha: {htmltype: captcha}
+  placeholder: {htmltype: placeholder}
+  
+  file: {htmltype: file, allowed_ext: [pdf, txt, rtf, jpg, jpeg, gif, png, eps, ai, cdr, psd, bmp, tiff, tif, doc, docx, zip, rar, xls, xlsx, xlsm, ppt, pptx]}
+  ckfile: {htmltype: ckfile}
+  files: {htmltype: files, allowed_ext: [pdf, txt, rtf, jpg, jpeg, gif, png, eps, ai, cdr, psd, bmp, tiff, tif, doc, docx, zip, rar, xls, xlsx, xlsm, ppt, pptx]}
+  mfiles: {htmltype: mfiles, allowed_ext: [pdf, txt, rtf, jpg, jpeg, gif, png, eps, ai, cdr, psd, bmp, tiff, tif, doc, docx, zip, rar, xls, xlsx, xlsm, ppt, pptx]}#attrs: {maxlength: 2, accept: 'gif|jpg|exe'}
+  flash: {htmltype: file, allowed_ext: [swf]}
+  spfile: {htmltype: file, allowed_ext: []}
+  image: {htmltype: image, allowed_ext: [png, gif, jpg, jpeg], crop: 0, cropdir: 'original', icon: {w: 80, h: 80, ratio: 'y', cut: 1}}
+  images: {htmltype: images, allowed_ext: [png, gif, jpg, jpeg], icon: {w: 100, h: 100, ratio: y, cut: 0}}
+  audio: {htmltype: audio, allowed_ext: [mp3, wav], optimized_defaults: {mp3: {ar: 48000, ab: 128k, ext: mp3}}}
+  video:
+    htmltype: video
+    allowed_ext: [avi, wmv, flv, mp4, mov, moov, mpe, mpeg, mpeg4, mpg, 3gp, divx, dvx, rv, qt]
+    optimized_defaults:
+      preview: {ss: '00:00:05', vframes: 1, ext: jpg}
+      low: {ab: 32k, ar: 22050, ext: flv}
+      high: {vcodec: libx264, threads: 0, vpre: normal, b: 2000k, ar: 48000, ab: 192k, ext: mp4}
+  pos: {htmltype: hidden}
+  mobile_phone:
+    htmltype: mobilephone
+    codes: [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 46, 47, 48, 49, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 81, 82, 84, 86, 90, 91, 92, 93, 94, 95, 98, 211, 212, 213, 216, 218, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 290, 291, 297, 298, 299, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 370, 371, 372, 373, 374, 375, 376, 377, 378, 380, 381, 382, 385, 386, 387, 389, 420, 421, 423, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 590, 591, 592, 593, 594, 595, 596, 597, 598, 599, 670, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 685, 686, 687, 688, 689, 690, 691, 692, 850, 852, 853, 855, 856, 880, 886, 960, 961, 962, 963, 964, 965, 966, 967, 968, 970, 971, 972, 973, 974, 975, 976, 977, 992, 993, 994, 995, 996, 998]
+  separator:
+    htmltype: separator
+  link2smth: {htmltype: link2smth}
+  fieldset:
+    htmltype: fieldset
+  label: {htmltype: label}

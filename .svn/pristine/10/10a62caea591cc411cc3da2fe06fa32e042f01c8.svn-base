@@ -1,0 +1,42 @@
+title: Администраторы
+complex: 1
+
+actions:
+  show: [Просмотреть администратора, Просмотр администратора]
+  list: [Просмотреть администраторов, Просмотр администраторов, [change_pass, delete]]
+  add: [Добавить администратора, Добавление администратора, Администратор успешно добавлен, Администратора добавить не удалось]
+  modify:
+    - Редактировать администратора
+    - Редактирование администратора
+    - Администратор успешно отредактирован
+    - Администратора отредактировать не удалось
+  change_pass: [Изменить пароль администратора, Изменение пароля администратора, Пароль администратора успешно изменен, Пароль администратора изменить не удалось]
+  delete: [Удалить администратора, Удаление администратора, Администратор успешно удален, Администратора удалить не удалось, '', Вы уверены что хотите удалить этого администратора?]
+  list_roles: [Просмотреть роли, Просмотр ролей, [delete_role]]
+  add_role: [Добавить роль, Добавление роли, Роль успешно добавлена, Роль добавить не удалось, '[root_url]users/list_roles/']
+  modify_role: [Редактировать роль, Редактирование роли, Роль успешно отредактирована, Роль отредактировать не удалось, '[root_url]users/list_roles/']
+  delete_role: [Удалить роль, Удаление роли, Роль успешно удалена, Роль удалить не удалось, '[root_url]users/list_roles/', 'Вы уверены, что хотите удалить эту роль?']
+  
+
+list_actions:
+  inline:
+    users:
+      show: {link: 'users/show/id/[id]', put: {login: before}, icon: show}
+      login: {title: modify, link: 'users/modify/id/[id]'}
+      name: {title: modify, link: 'users/modify/id/[id]'}
+      delete: {link: 'users/delete/id/[id]', icon: delete}
+      blocked: {link: 'users/change/field/blocked/id/[id]/ret_action/list', title: {yes: Разблокировать администратора, no: Заблокировать администратора}, retLink: 'users/list'}
+      change_pass: {link: 'users/change_pass/id/[id]', icon: pass}
+    roles:
+      manage_permissions: {link: 'permissions/manage/pid/[id]', title: Управление разрешениями, put: {title: before}, icon: show}
+      title: {link: 'users/modify_role/id/[id]', title: modify_role}
+      delete_role: {link: 'users/delete_role/id/[id]', icon: delete}
+  after:
+    users:
+      add: 'users/add'
+    roles:
+      add_role: 'users/add_role'
+
+noContent:
+  users: Администраторов не найдено
+  roles: Ролей не найдено

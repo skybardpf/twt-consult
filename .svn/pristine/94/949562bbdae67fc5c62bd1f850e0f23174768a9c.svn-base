@@ -1,0 +1,19 @@
+tables:
+  currencies:
+    fields:
+      id: {type: int, length: 10, auto_increment: 1, notnull: 1, am: {type: integer}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Название}}
+      pos: {type: int, length: 10, unsigned: 1, notnull: 1, am: {type: integer, htmltype: hidden}}
+      code: {type: varchar, length: '255', notnull: 1, am: {type: string, req: 1, title: Код, trimNE: 'Поле "Код" не должно быть пустым'}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+    table:
+      PRIMARY KEY: id
+      KEYS: 
+        pos: [pos]
+        active: [active]
+        code: [code]
+    actions:
+      list: [id, pos, title, code, active]
+      show: [title, code, active]
+      modify: [title, code, active]
+      add: [pos, title, code, active]

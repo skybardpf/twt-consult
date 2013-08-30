@@ -1,0 +1,108 @@
+.photoGallery2 {
+    border-bottom: 1px solid #E1E2E4;
+    margin-bottom: 19px;
+    padding-bottom: 8px;
+}
+.listTableTop div.rc10 {
+    color: #545454;
+    font: 15px/19px "Trebuchet MS","Times New Roman",serif;
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+.photoGallery2 .info:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.photoGallery2 .info dt {
+    color: #545454;
+    float: left;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 4px;
+    text-align: right;
+    width: 115px;
+}
+.photoGallery2 .info dd:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.photoGallery2 .info dd {
+    color: #000000;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 19px;
+    margin-left: 130px;
+    padding-bottom: 6px;
+}
+.typical:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.listTableTop .rc10 h2:first-child {
+    margin-top: 0;
+}
+.listTableTop .rc10 h2 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 26px;
+    margin: 23px 0 9px;
+}
+.listTableTop .rc10 p {
+    margin: 0 0 16px;
+}
+.uTab2 {
+    background: none repeat scroll 0 0 #FDFDFE;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.uTab2 td.h {
+    font-size: 12px;
+}
+.uTab2 .color td {
+    background: none repeat scroll 0 0 #ECEFF1;
+}
+.uTab2 td {
+    border-top: 1px solid #CCD5DB;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 8px 6px 6px 10px;
+}
+.typical .ul2 {
+    margin-left: 0;
+}
+.typical ul {
+    margin-left: 50px;
+}
+.typical ul, .typical ol {
+    margin-bottom: 16px;
+}
+.typical ul > li {
+    background: url("../i/li.gif") no-repeat scroll 0 9px transparent;
+    margin-bottom: 10px;
+    padding-left: 30px;
+}
+.typical .ul2 > li {
+    background: url("../i/li.gif") no-repeat scroll 0 9px transparent;
+    margin-bottom: 17px;
+    padding-left: 30px;
+}
+.typical .ul2 > li dfn {
+    color: #000000;
+    display: block;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 20px;
+}

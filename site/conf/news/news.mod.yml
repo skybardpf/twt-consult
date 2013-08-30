@@ -1,0 +1,22 @@
+tables:
+  news:
+    fields:
+      id: {type: int, length: 10, unsigned: 1, auto_increment: 1, notnull: 1, am: {type: integer}}
+      created: {type: date, notnull: 1, am: {type: date, req: 1, title: Дата публикации}}
+      title: {type: tinytext, notnull: 1, am: {type: string, req: 1, title: Заголовок}}
+      anonce: {type: text, notnull: 1, am: {type: text, req: 1, title: Анонс}}
+      text: {type: text, notnull: 1, am: {type: ckhtml, htmltype: ckhtml, req: 1, title: Текст}}
+      image: {type: tinytext, notnull: 0, am: {type: image, title: Изображение}}
+      active: {type: enum('yes','no'), default: 'yes', notnull: 1, am: {type: checkbox, title: Отображать на сайте, otitle: Отображать на сайте, default: 'yes', checked: 'yes', unchecked: 'no', values: {no: нет, yes: да}}}
+    table:
+      PRIMARY KEY: id
+      KEYS: 
+        created: [created]
+        active: [active]
+    actions:
+      list: [id, created, title, anonce, image, active]
+      show: [created, title, anonce, text, image, active]
+      modify: [title, anonce, text, image, active]
+      add: [title, anonce, text, image, active]
+      site_news: [id, created, title, anonce, image]
+      site_new: [id, created, title, text, image]

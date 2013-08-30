@@ -1,0 +1,14 @@
+db_prefix: mvs_com_
+form:
+  send: i agree
+  reset: cansel
+  not_choosen: please choose one
+
+lang:
+  top: top
+  terms: terms
+  policy: policy
+
+app_title: mvs-capital.ru
+language: eng
+?>
