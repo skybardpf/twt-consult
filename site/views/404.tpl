@@ -1,1 +1,0 @@
-{$settings.error_404}

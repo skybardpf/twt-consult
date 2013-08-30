@@ -1,1 +1,0 @@
-<input type="submit" name="multy_delete" formaction="/admin/{$ctrlName}/multy_delete" value="Удалить">
