@@ -1,7 +1,9 @@
 <div class="blue"></div>
 <div class="header_inner">
     <div class="logo">
+        <a href="<?= $this->createAbsoluteUrl('/'); ?>">
         <img alt="ТВТ Консалт" title="ТВТ Консалт: организация ВЭД" src="<?= $this->baseAssets.'/img/logo.png'; ?>">
+        </a>
     </div>
     <div class="top_menu">
         <table>
@@ -24,7 +26,7 @@
         </table>
     </div>
     <div class="contacts">
-        <a class="location" href="/services/price_list">
+        <a class="location" href="<?= $this->createUrl('price_list/'); ?>">
             <img alt="Прайс-лист" title="Наши прайс-листы" src="<?= $this->baseAssets.'/img/header_pricelist.png'; ?>">
                 <span class="wrp">
 					<span class="price">Прайс-лист</span>

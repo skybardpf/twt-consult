@@ -139,4 +139,16 @@ class Country extends CActiveRecord
     {
         return '/img/countries/small/'.$this->flag;
     }
+
+    /**
+     * @return string
+     */
+    public function getUrlArrow()
+    {
+        if ($this->quotation == 'red')
+            return '/img/arrow-red.png';
+        if ($this->quotation == 'green')
+            return '/img/arrow-green.png';
+        return '';
+    }
 }
