@@ -4,31 +4,12 @@
         <div class="con">
             <div class="monitor">
                 <div class="cont">
-                    <a href="/countries/singapur">
-                        <img alt="" title="" style="width: 660px; height: 398px;"
-                             src="<?= $this->baseAssets . '/img/announcies/original/singapore_new.jpg'; ?>">
-                    </a>
+                    <?= $this->renderPartial('/common/promos'); ?>
                 </div>
             </div>
 
             <div id="program">
-                <ul>
-                    <li class="tv_program_li">
-                        <a href="/services/oformlenie_tamogennogo_predstavitelya/"><img alt="" title=""
-                                                                                        src="<?= $this->baseAssets . '/img/announcies/original/oformlenie_tamogennogo_predstavitelya.jpg'; ?>"
-                                                                                        style="width: 338px; height: 132px;"></a>
-                    </li>
-                    <li class="tv_program_li">
-                        <a href="/services/pravovoe_soprovogdenie"><img alt="" title=""
-                                                                        src="<?= $this->baseAssets . '/img/announcies/original/oformlenie_tamogennogo_predstavitelya.jpg'; ?>"
-                                                                        style="width: 338px; height: 132px;"></a>
-                    </li>
-                    <li class="tv_program_li">
-                        <a href="/services/registraciya_offshorov/"><img alt="" title=""
-                                                                         src="<?= $this->baseAssets . '/img/announcies/original/registraciya_offshorov.jpg'; ?>"
-                                                                         style="width: 338px; height: 132px;"></a>
-                    </li>
-                </ul>
+                <?= $this->renderPartial('/common/banners'); ?>
             </div>
             <div class="clear"></div>
         </div>

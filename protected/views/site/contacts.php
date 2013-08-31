@@ -3,7 +3,11 @@
         <a href="<?= $this->createUrl('contacts'); ?>">Контакты</a>
     </div>
 
-    <?= $this->renderPartial('/common/banners'); ?>
+    <div class="banners">
+        <div id="ban">
+        <?= $this->renderPartial('/common/banners'); ?>
+        </div>
+    </div>
 
     <div class="static_text">
         <h2>Контакты</h2>

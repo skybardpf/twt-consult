@@ -4,7 +4,11 @@
         <a href="<?= $this->createUrl('about'); ?>">О компании</a>
     </div>
 
-    <?= $this->renderPartial('/common/banners'); ?>
+    <div class="banners">
+        <div id="ban">
+            <?= $this->renderPartial('/common/banners'); ?>
+        </div>
+    </div>
 
     <div class="static_text">
         <h2>О компании</h2>

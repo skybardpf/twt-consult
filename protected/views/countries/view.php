@@ -11,10 +11,13 @@
         <a href="<?= $this->createUrl('countries/'); ?>">Страны</a> /
         <em><?= CHtml::encode($model->title); ?></em></div>
 
-    <?= $this->renderPartial('/common/banners'); ?>
+    <div class="banners">
+        <div id="ban">
+            <?= $this->renderPartial('/common/banners'); ?>
+        </div>
+    </div>
 
     <div class="service_cont">
-
         <div class="list articles">
 
             <div class="hdng">
@@ -26,7 +29,6 @@
                 </div>
             </div>
             <div class="clear"></div>
-
         </div>
 
     </div>

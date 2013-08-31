@@ -122,9 +122,22 @@ class Banner extends CActiveRecord
         $crt = new CDbCriteria();
         $crt->order = 'rand()';
         $crt->limit = '3';
-        $crt->condition = 'active=:active';
-        $crt->params = array(':active' => 'yes');
+        $crt->condition = 'active=:active AND type=:type';
+        $crt->params = array(':active' => 'yes', ':type' => 'banner');
         return $this->findAll($crt);
+    }
+
+    /**
+     * @return Banner
+     */
+    public function gerRandomPromo()
+    {
+        $crt = new CDbCriteria();
+        $crt->order = 'rand()';
+        $crt->limit = '1';
+        $crt->condition = 'active=:active AND type=:type';
+        $crt->params = array(':active' => 'yes', ':type' => 'promo');
+        return $this->find($crt);
     }
 
     /**
