@@ -9,16 +9,14 @@
                 <td>
                     <table class="inner_table">
                         <tr>
-
-
-                            <td class="zayavki-menu"><a href="/requests">Онлайн-заявки</a></td>
-                            <td><a href="<?= $this->createUrl('about'); ?>">О компании</a></td>
+                            <td class="zayavki-menu"><a href="<?= $this->createUrl('requests/'); ?>">Онлайн-заявки</a></td>
+                            <td><a href="<?= $this->createUrl('site/about'); ?>">О компании</a></td>
                             <td class="delimiter">|</td>
-                            <td><a href="/news">Новости</a></td>
+                            <td><a href="<?= $this->createUrl('news/'); ?>">Новости</a></td>
                             <td class="delimiter">|</td>
-                            <td><a href="/countries">Страны</a></td>
+                            <td><a href="<?= $this->createUrl('countries/'); ?>">Страны</a></td>
                             <td class="delimiter">|</td>
-                            <td><a href="<?= $this->createUrl('contacts'); ?>">КОНТАКТЫ</a></td>
+                            <td><a href="<?= $this->createUrl('site/contacts/'); ?>">КОНТАКТЫ</a></td>
                         </tr>
                     </table>
                 </td>

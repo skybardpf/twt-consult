@@ -3,29 +3,7 @@
         <a href="<?= $this->createUrl('contacts'); ?>">Контакты</a>
     </div>
 
-
-    <div class="banners">
-        <div id="ban">
-            <div id="banner1">
-                <a href="/services/nominalnye_servisy/"><img alt="Комлпексная логистика в ЕС"
-                                                             title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                             src="<?= $this->baseAssets . '/img/announcies/original/nominalnye_servisy.jpg'; ?>"
-                                                             style="width: 338px; height: 132px;"></a>
-            </div>
-            <div id="banner2">
-                <a href="/services/logistika/"><img alt="Комлпексная логистика в ЕС"
-                                                    title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                    src="<?= $this->baseAssets . '/img/announcies/original/logistika.jpg'; ?>"
-                                                    style="width: 338px; height: 132px;"></a>
-            </div>
-            <div id="banner3">
-                <a href="/services/otkrytie_schetov_v_inostrannyh_bankah"><img alt="Комлпексная логистика в ЕС"
-                                                                               title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                                               src="<?= $this->baseAssets . '/img/announcies/original/otkrytie_schetov_v_inostrannyh_bankah.jpg'; ?>"
-                                                                               style="width: 338px; height: 132px;"></a>
-            </div>
-        </div>
-    </div>
+    <?= $this->renderPartial('/common/banners'); ?>
 
     <div class="static_text">
         <h2>Контакты</h2>

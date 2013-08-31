@@ -4,29 +4,7 @@
         <a href="<?= $this->createUrl('about'); ?>">О компании</a>
     </div>
 
-
-    <div class="banners">
-        <div id="ban">
-            <div id="banner1">
-                <a href="/services/oformlenie_tamogennogo_predstavitelya/"><img alt="Комлпексная логистика в ЕС"
-                                                                                title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                                                src="<?= $this->baseAssets . '/img/announcies/original/oformlenie_tamogennogo_predstavitelya.jpg'; ?>"
-                                                                                style="width: 338px; height: 132px;"></a>
-            </div>
-            <div id="banner2">
-                <a href="/services/logistika/"><img alt="Комлпексная логистика в ЕС"
-                                                    title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                    src="<?= $this->baseAssets . '/img/announcies/original/logistika.jpg'; ?>"
-                                                    style="width: 338px; height: 132px;"></a>
-            </div>
-            <div id="banner3">
-                <a href="/services/autsorning_ved/"><img alt="Комлпексная логистика в ЕС"
-                                                         title="ТВТ Консалт: Комлпексная логистика в ЕС"
-                                                         src="<?= $this->baseAssets . '/img/announcies/original/autsorning_ved.jpg'; ?>"
-                                                         style="width: 338px; height: 132px;"></a>
-            </div>
-        </div>
-    </div>
+    <?= $this->renderPartial('/common/banners'); ?>
 
     <div class="static_text">
         <h2>О компании</h2>
